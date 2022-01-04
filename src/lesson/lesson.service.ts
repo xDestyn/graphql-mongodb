@@ -6,22 +6,20 @@ import { v4 as uuid } from 'uuid';
 
 @Injectable()
 export class LessonService {
-  constructor(
-    @InjectRepository(Lesson) private lessonRepository: Repository<Lesson>,
-  ) {}
+	constructor(@InjectRepository(Lesson) private lessonRepository: Repository<Lesson>) {}
 
-  async getLesson(id: string): Promise<Lesson> {
-    return this.lessonRepository.findOne({ id });
-  }
+	async getLesson(id: string): Promise<Lesson> {
+		return this.lessonRepository.findOne({ id });
+	}
 
-  async createLesson(name, startDate, endDate): Promise<Lesson> {
-    const lesson = this.lessonRepository.create({
-      id: uuid(),
-      name,
-      startDate,
-      endDate,
-    });
+	async createLesson(name, startDate, endDate): Promise<Lesson> {
+		const lesson = this.lessonRepository.create({
+			id: uuid(),
+			name,
+			startDate,
+			endDate,
+		});
 
-    return this.lessonRepository.save(lesson);
-  }
+		return this.lessonRepository.save(lesson);
+	}
 }
